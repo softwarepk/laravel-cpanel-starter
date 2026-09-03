@@ -19,13 +19,13 @@
                     <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard') }}
                     </flux:sidebar.item>
-                    <flux:sidebar.item icon="book-open-text" :href="route('patterns')" :current="request()->routeIs('patterns')" wire:navigate>
+                    <flux:sidebar.item :href="route('patterns')" :current="request()->routeIs('patterns')" wire:navigate>
                         {{ __('Patterns') }}
                     </flux:sidebar.item>
                 </flux:sidebar.group>
 
                 <flux:sidebar.group :heading="__('Account')" class="mt-4 grid">
-                    <flux:sidebar.item icon="cog" :href="route('profile.edit')" :current="request()->routeIs('profile.*') || request()->routeIs('security.*')" wire:navigate>
+                    <flux:sidebar.item :href="route('profile.edit')" :current="request()->routeIs('profile.*') || request()->routeIs('security.*')" wire:navigate>
                         {{ __('Settings') }}
                     </flux:sidebar.item>
                 </flux:sidebar.group>
@@ -35,13 +35,13 @@
 
             <div class="border-t border-zinc-200 pt-3 dark:border-zinc-800">
                 <flux:dropdown position="top" align="start">
-                    <flux:sidebar.profile :name="$user->name" :initials="$user->initials()" icon:trailing="chevron-down" />
+                    <flux:sidebar.profile :name="$user->name" :initials="$user->initials()" />
                     <flux:menu>
-                        <flux:menu.item :href="route('profile.edit')" icon="cog" wire:navigate>{{ __('Settings') }}</flux:menu.item>
+                        <flux:menu.item :href="route('profile.edit')" wire:navigate>{{ __('Settings') }}</flux:menu.item>
                         <flux:menu.separator />
                         <form method="POST" action="{{ route('logout') }}" class="w-full">
                             @csrf
-                            <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle" class="w-full cursor-pointer">{{ __('Log out') }}</flux:menu.item>
+                            <flux:menu.item as="button" type="submit" class="w-full cursor-pointer">{{ __('Log out') }}</flux:menu.item>
                         </form>
                     </flux:menu>
                 </flux:dropdown>
@@ -49,16 +49,16 @@
         </flux:sidebar>
 
         <flux:header class="border-b border-zinc-200 bg-white/95 lg:hidden dark:border-zinc-800 dark:bg-zinc-950/95">
-            <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
+            <flux:sidebar.toggle class="lg:hidden" inset="left" />
             <flux:spacer />
             <flux:dropdown position="top" align="end">
-                <flux:profile :initials="$user->initials()" icon-trailing="chevron-down" />
+                <flux:profile :initials="$user->initials()" />
                 <flux:menu>
-                    <flux:menu.item :href="route('profile.edit')" icon="cog" wire:navigate>{{ __('Settings') }}</flux:menu.item>
+                    <flux:menu.item :href="route('profile.edit')" wire:navigate>{{ __('Settings') }}</flux:menu.item>
                     <flux:menu.separator />
                     <form method="POST" action="{{ route('logout') }}" class="w-full">
                         @csrf
-                        <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle" class="w-full cursor-pointer">{{ __('Log out') }}</flux:menu.item>
+                        <flux:menu.item as="button" type="submit" class="w-full cursor-pointer">{{ __('Log out') }}</flux:menu.item>
                     </form>
                 </flux:menu>
             </flux:dropdown>
