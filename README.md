@@ -2,42 +2,61 @@
 
 A reusable starting point for rapidly building and deploying conventional Laravel web applications on existing cPanel hosting.
 
-This starter is intentionally narrow: it is for small-to-medium database-backed applications that benefit from a modern Laravel/Livewire UI while remaining simple to host, operate, and iterate on in a conventional cPanel/Linux environment.
+The starter is intentionally focused: small-to-medium database-backed applications that benefit from a modern Laravel/Livewire product UI while remaining simple to host, operate, and iterate on in a conventional cPanel/Linux environment.
 
-## What this starter provides
+## Foundation
 
-- Laravel + Livewire + Flux + Tailwind + Vite baseline
-- Authentication and account settings foundation
-- Neutral responsive application shell
-- Reusable UI patterns extracted from a production application
-- Pattern gallery for common business-application screens
-- cPanel-friendly defaults with no Redis or permanent worker requirement
-- Pest, Pint, Larastan, and Laravel Boost development tooling
-- Concise guidance for UI, AI-assisted development, and deployment
+- Laravel 13 + PHP 8.3+
+- Blade + class-based Livewire 4
+- Flux UI 2 + Livewire Blaze
+- Tailwind CSS 4 + Vite 8
+- Fortify authentication and account settings
+- MedRim-derived `x-ui.*` presentation primitives and interaction grammar
+- GitHub Primer + Atlassian + Linear UI influences
+- Heroicons plus committed Lucide Flux icons where needed
+- Pest, Pint, Larastan, Laravel Boost, and agent/Cursor guidance
+- SQLite zero-setup local development; MySQL/MariaDB cPanel production
+- file cache/session and synchronous jobs by default; persistent infrastructure is opt-in
+- Git/PR/review/deployment guardrails
 
-## What it deliberately does not provide
-
-- Product-specific workflows or data models
-- Domain-specific roles, approval flows, policy concepts, or reporting
-- Infrastructure that ordinary cPanel hosting does not need
-- A universal engineering standard for every kind of application
+The starter deliberately contains no product-specific workflows, role model, approval process, entitlement logic, or reporting domain.
 
 ## Quick start
 
 ```bash
 cp .env.example .env
-composer install
-php artisan key:generate
-php artisan migrate --seed
-npm install
-npm run build
+composer setup
 php artisan serve
 ```
 
-The local seeder creates `starter@example.com` with password `password` so the shell can be reviewed immediately. Registration is also enabled by default and can be disabled with `FORTIFY_REGISTRATION=false`.
+`composer setup` creates the local SQLite database automatically, generates the application key, runs migrations/seeders, installs frontend dependencies, and builds production assets. No local MySQL database/user/password setup is required.
 
-For local development, `composer dev` runs the application and Vite together.
+The local seeder creates:
 
-A new product repository should normally commit the `composer.lock` and `package-lock.json` generated during its first setup so subsequent deployments are repeatable.
+```text
+starter@example.com
+password
+```
 
-See `FOUNDATION.md`, `UI-GUIDE.md`, `AGENTS.md`, and `DEPLOYMENT.md` for the small amount of guidance that travels with the starter.
+For active frontend development, use:
+
+```bash
+composer dev
+```
+
+Before considering a change complete:
+
+```bash
+composer ci:check
+```
+
+## Read next
+
+- `docs/UI-DESIGN-SYSTEM.md` — product UI principles and patterns
+- `.ai/rules/index.md` — path-specific engineering rules
+- `AGENTS.md` — coding-agent operating guidance
+- `docs/GITHUB-GUARDRAILS.md` — branch/PR/review conventions
+- `DEPLOYMENT.md` — cPanel deployment model
+- `/patterns` — living rendered UI reference after login
+
+A product created from this starter should commit `composer.lock` and `package-lock.json` after its dependency set is established so deployments are reproducible.
