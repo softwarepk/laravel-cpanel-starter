@@ -15,6 +15,7 @@ class Profile extends Component
     use ProfileValidationRules;
 
     public string $name = '';
+
     public string $email = '';
 
     public function mount(): void
