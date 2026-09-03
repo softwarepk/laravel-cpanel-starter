@@ -1,33 +1,64 @@
 # Laravel cPanel Starter
 
-A reusable starting point for rapidly building and deploying conventional web applications on existing cPanel hosting.
+A reusable starting point for rapidly building and deploying conventional Laravel web applications on existing cPanel hosting.
 
-This project is being extracted from a production-tested Laravel application, preserving the reusable platform choices, tools, UI principles and patterns, development workflow, and cPanel deployment approach while removing all application-specific business logic.
+The starter is intentionally focused: small-to-medium database-backed applications that benefit from a modern Laravel/Livewire product UI while remaining simple to host, operate, and iterate on in a conventional cPanel/Linux environment.
 
-## Purpose
+## Foundation
 
-Use this starter when the goal is to get a small-to-medium database-backed web application running quickly on conventional cPanel/Linux hosting with a polished, consistent starting point.
+- Laravel 13 + PHP 8.3+
+- Blade + class-based Livewire 4
+- Flux UI 2 + Livewire Blaze
+- Tailwind CSS 4 + Vite 8
+- Fortify authentication and account settings
+- MedRim-derived `x-ui.*` presentation primitives and interaction grammar
+- GitHub Primer + Atlassian + Linear UI influences
+- Heroicons plus committed Lucide Flux icons where needed
+- Pest, Pint, Larastan, Laravel Boost, and agent/Cursor guidance
+- SQLite zero-setup local development; MySQL/MariaDB cPanel production
+- file cache/session and synchronous jobs by default; persistent infrastructure is opt-in
+- Git/PR/review/deployment guardrails
 
-It is intentionally not a universal application architecture or an organization-wide engineering standard.
+The starter deliberately contains no product-specific workflows, role model, approval process, entitlement logic, or reporting domain.
 
-## What belongs here
+## Quick start
 
-- Proven Laravel/cPanel-compatible platform and stack choices
-- Reusable application shell and visual foundation
-- Common UI principles and interaction patterns
-- Development and testing tools that support rapid iteration
-- AI-assisted development guidance
-- Git-based development workflow
-- Repeatable cPanel deployment approach
-- A small set of generic examples that demonstrate the preferred patterns
+```bash
+cp .env.example .env
+composer setup
+php artisan serve
+```
 
-## What does not belong here
+`composer setup` creates the local SQLite database automatically, generates the application key, runs migrations/seeders, installs frontend dependencies, and builds production assets. No local MySQL database/user/password setup is required.
 
-- Product-specific workflows or terminology
-- Domain-specific data models or business rules
-- Speculative infrastructure or complexity not needed for cPanel-hosted applications
-- Rules intended to govern unrelated application types or hosting environments
+The local seeder creates:
 
-## Current status
+```text
+starter@example.com
+password
+```
 
-Foundation extraction in progress.
+For active frontend development, use:
+
+```bash
+composer dev
+```
+
+Before considering a change complete:
+
+```bash
+composer ci:check
+```
+
+## Read next
+
+- `docs/UI-DESIGN-SYSTEM.md` — product UI principles and patterns
+- `.ai/rules/index.md` — path-specific engineering rules
+- `AGENTS.md` — coding-agent operating guidance
+- `docs/GITHUB-GUARDRAILS.md` — branch/PR/review conventions
+- `DEPLOYMENT.md` — cPanel deployment model
+- `/patterns` — living rendered UI reference after login
+
+## Reproducible dependencies
+
+This extraction branch intentionally began without lockfiles while the reusable dependency set was being corrected. Before the foundation is merged/tagged for reuse, generate and commit both `composer.lock` and `package-lock.json` from a clean successful local install. Once committed, normal projects should use `composer install` and `npm ci` against those known dependency versions rather than silently drifting to newer transitive packages.
