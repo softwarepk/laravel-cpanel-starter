@@ -1,4 +1,4 @@
-<x-layouts.auth :title="__('Create account')">
+<x-layouts::auth :title="__('Create account')">
     <div class="flex flex-col gap-6">
         <x-auth-header :title="__('Create an account')" :description="__('Enter your details to get started')" />
         <form method="POST" action="{{ route('register.store') }}" class="flex flex-col gap-5">
@@ -11,4 +11,4 @@
         </form>
         <div class="text-center text-sm text-zinc-600 dark:text-zinc-400">{{ __('Already have an account?') }} <flux:link :href="route('login')" wire:navigate>{{ __('Log in') }}</flux:link></div>
     </div>
-</x-layouts.auth>
+</x-layouts::auth>
