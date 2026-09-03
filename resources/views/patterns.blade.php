@@ -1,4 +1,4 @@
-<x-layouts.app :title="__('UI Patterns')">
+<x-layouts::app :title="__('UI Patterns')">
     <main class="ui-page">
         <header class="ui-page-header">
             <div>
@@ -70,4 +70,4 @@
             </div>
         </section>
     </main>
-</x-layouts.app>
+</x-layouts::app>
