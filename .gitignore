@@ -9,6 +9,8 @@
 /public/storage
 /storage/*.key
 /vendor
+/database/*.sqlite
+/database/*.sqlite-*
 .env
 .env.backup
 .env.production
@@ -18,4 +20,3 @@ Homestead.yaml
 auth.json
 npm-debug.log
 yarn-error.log
-/.cursor
