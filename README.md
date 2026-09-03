@@ -11,7 +11,7 @@ The starter is intentionally focused: small-to-medium database-backed applicatio
 - Flux UI 2 + Livewire Blaze
 - Tailwind CSS 4 + Vite 8
 - Fortify authentication and account settings
-- MedRim-derived `x-ui.*` presentation primitives and interaction grammar
+- Reusable `x-ui.*` presentation primitives and interaction grammar
 - GitHub Primer + Atlassian + Linear UI influences
 - Heroicons plus committed Lucide Flux icons where needed
 - Pest, Pint, Larastan, Laravel Boost, and agent/Cursor guidance
