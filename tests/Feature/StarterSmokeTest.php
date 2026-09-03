@@ -16,6 +16,8 @@ it('renders the login page', function () {
 });
 
 it('shows the dashboard to a verified user', function () {
+    $this->withoutExceptionHandling();
+
     $user = User::factory()->create();
 
     $this->actingAs($user)
@@ -25,6 +27,8 @@ it('shows the dashboard to a verified user', function () {
 });
 
 it('shows the pattern gallery to a verified user', function () {
+    $this->withoutExceptionHandling();
+
     $user = User::factory()->create();
 
     $this->actingAs($user)
