@@ -1,33 +1,39 @@
 # Laravel cPanel Starter
 
-A reusable starting point for rapidly building and deploying conventional web applications on existing cPanel hosting.
+A reusable starting point for rapidly building and deploying conventional Laravel web applications on existing cPanel hosting.
 
-This project is being extracted from a production-tested Laravel application, preserving the reusable platform choices, tools, UI principles and patterns, development workflow, and cPanel deployment approach while removing all application-specific business logic.
+This starter is intentionally narrow: it is for small-to-medium database-backed applications that benefit from a modern Laravel/Livewire UI while remaining simple to host, operate, and iterate on in a conventional cPanel/Linux environment.
 
-## Purpose
+## What this starter provides
 
-Use this starter when the goal is to get a small-to-medium database-backed web application running quickly on conventional cPanel/Linux hosting with a polished, consistent starting point.
+- Laravel + Livewire + Flux + Tailwind + Vite baseline
+- Authentication and account settings foundation
+- Neutral responsive application shell
+- Reusable UI patterns extracted from a production application
+- Pattern gallery for common business-application screens
+- cPanel-friendly defaults with no Redis or permanent worker requirement
+- Pest, Pint, Larastan, and Laravel Boost development tooling
+- Concise guidance for UI, AI-assisted development, and deployment
 
-It is intentionally not a universal application architecture or an organization-wide engineering standard.
+## What it deliberately does not provide
 
-## What belongs here
+- Product-specific workflows or data models
+- Domain-specific roles, approval flows, policy concepts, or reporting
+- Infrastructure that ordinary cPanel hosting does not need
+- A universal engineering standard for every kind of application
 
-- Proven Laravel/cPanel-compatible platform and stack choices
-- Reusable application shell and visual foundation
-- Common UI principles and interaction patterns
-- Development and testing tools that support rapid iteration
-- AI-assisted development guidance
-- Git-based development workflow
-- Repeatable cPanel deployment approach
-- A small set of generic examples that demonstrate the preferred patterns
+## Quick start
 
-## What does not belong here
+```bash
+cp .env.example .env
+composer install
+php artisan key:generate
+php artisan migrate
+npm install
+npm run build
+php artisan serve
+```
 
-- Product-specific workflows or terminology
-- Domain-specific data models or business rules
-- Speculative infrastructure or complexity not needed for cPanel-hosted applications
-- Rules intended to govern unrelated application types or hosting environments
+For local development, `composer dev` runs the application and Vite together.
 
-## Current status
-
-Foundation extraction in progress.
+See `FOUNDATION.md`, `UI-GUIDE.md`, `AGENTS.md`, and `DEPLOYMENT.md` for the small amount of guidance that travels with the starter.

@@ -1,0 +1,211 @@
+@import 'tailwindcss';
+@import '../../vendor/livewire/flux/dist/flux.css';
+
+@source '../views';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../vendor/livewire/flux/stubs/**/*.blade.php';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --color-accent: #2563eb;
+    --color-accent-content: #1d4ed8;
+    --color-accent-foreground: #ffffff;
+}
+
+@layer theme {
+    .dark {
+        --color-accent: #3b82f6;
+        --color-accent-content: #60a5fa;
+        --color-accent-foreground: #ffffff;
+    }
+}
+
+@layer base {
+    *, ::after, ::before, ::backdrop, ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
+
+    body {
+        @apply antialiased text-[15px];
+    }
+
+    [x-cloak] {
+        display: none !important;
+    }
+
+    ::selection {
+        @apply bg-blue-100 text-blue-950 dark:bg-blue-900/60 dark:text-blue-50;
+    }
+}
+
+@layer components {
+    .ui-page {
+        @apply mx-auto w-full max-w-[96rem] space-y-6 px-4 py-5 sm:px-6 lg:px-8 lg:py-7;
+    }
+
+    .ui-page-header {
+        @apply flex flex-col gap-4 border-b border-zinc-200 pb-4 sm:flex-row sm:items-start sm:justify-between dark:border-zinc-800;
+    }
+
+    .ui-page-title {
+        @apply text-2xl font-semibold tracking-tight text-zinc-950 dark:text-white;
+    }
+
+    .ui-page-description {
+        @apply mt-1 max-w-3xl text-sm leading-6 text-zinc-600 dark:text-zinc-400;
+    }
+
+    .ui-page-actions {
+        @apply flex shrink-0 flex-wrap items-center gap-2;
+    }
+
+    .ui-eyebrow {
+        @apply text-xs font-semibold uppercase tracking-[0.12em] text-zinc-500 dark:text-zinc-400;
+    }
+
+    .ui-section {
+        @apply space-y-4;
+    }
+
+    .ui-section-header {
+        @apply flex flex-col gap-1 border-b border-zinc-200 pb-3 sm:flex-row sm:items-end sm:justify-between dark:border-zinc-800;
+    }
+
+    .ui-section-title {
+        @apply text-base font-semibold text-zinc-950 dark:text-white;
+    }
+
+    .ui-section-description {
+        @apply mt-1 text-sm text-zinc-600 dark:text-zinc-400;
+    }
+
+    .ui-toolbar {
+        @apply rounded-lg border border-zinc-200 bg-white p-3 shadow-sm shadow-zinc-950/[0.02] dark:border-zinc-800 dark:bg-zinc-900;
+    }
+
+    .ui-filter-bar {
+        @apply rounded-lg border border-zinc-200 bg-zinc-50/70 p-4 dark:border-zinc-800 dark:bg-zinc-900/60;
+    }
+
+    .ui-summary-surface {
+        @apply grid overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm shadow-zinc-950/[0.025] divide-y divide-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 dark:divide-zinc-800 sm:grid-cols-3 sm:divide-x sm:divide-y-0;
+    }
+
+    .ui-summary-stat {
+        @apply min-w-0 px-5 py-4;
+    }
+
+    .ui-summary-label {
+        @apply text-xs font-medium text-zinc-500 dark:text-zinc-400;
+    }
+
+    .ui-summary-value {
+        @apply mt-1 text-xl font-semibold tabular-nums text-zinc-950 dark:text-white;
+    }
+
+    .ui-table-shell {
+        @apply overflow-x-auto rounded-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900;
+    }
+
+    .ui-table-shell table {
+        @apply w-full min-w-[42rem] text-sm;
+    }
+
+    .ui-table-shell thead {
+        @apply bg-zinc-100/80 text-[0.72rem] font-semibold uppercase tracking-[0.035em] text-zinc-600 dark:bg-zinc-900 dark:text-zinc-400;
+    }
+
+    .ui-table-shell th {
+        @apply px-4 py-3 text-left font-semibold leading-4;
+    }
+
+    .ui-table-shell td {
+        @apply px-4 py-3.5 align-middle;
+    }
+
+    .ui-table-shell tbody {
+        @apply divide-y divide-zinc-200 dark:divide-zinc-800;
+    }
+
+    .ui-table-shell tbody tr {
+        @apply transition-colors duration-150 hover:bg-zinc-50/70 dark:hover:bg-zinc-800/40;
+    }
+
+    .ui-muted-panel {
+        @apply rounded-lg border border-zinc-200 bg-zinc-50/70 p-4 dark:border-zinc-800 dark:bg-zinc-900/60;
+    }
+
+    .ui-form-panel {
+        @apply rounded-xl border border-zinc-200 bg-white p-5 shadow-sm shadow-zinc-950/[0.02] dark:border-zinc-800 dark:bg-zinc-900;
+    }
+
+    .ui-form-grid {
+        @apply grid gap-5 md:grid-cols-2;
+    }
+
+    .ui-form-actions {
+        @apply mt-5 flex flex-col-reverse gap-3 border-t border-zinc-200 pt-4 sm:flex-row sm:items-center sm:justify-between dark:border-zinc-800;
+    }
+
+    .ui-form-actions-primary {
+        @apply flex flex-wrap items-center justify-end gap-2 sm:ml-auto;
+    }
+
+    .ui-empty-state {
+        @apply mx-auto flex max-w-lg items-start justify-center gap-3 px-5 py-10 text-left;
+    }
+
+    .ui-empty-state-mark {
+        @apply mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full border border-zinc-200 bg-zinc-50 text-lg font-semibold leading-none text-zinc-400 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-500;
+    }
+
+    .ui-tabs {
+        @apply flex min-w-0 gap-1 overflow-x-auto border-b border-zinc-200 dark:border-zinc-800;
+    }
+
+    .ui-tab {
+        @apply relative -mb-px whitespace-nowrap border-b-2 border-transparent px-3 py-3 text-sm font-medium text-zinc-500 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100;
+    }
+
+    .ui-tab-active {
+        @apply border-blue-600 font-semibold text-blue-700 dark:border-blue-400 dark:text-blue-300;
+    }
+
+    .ui-settings-shell {
+        @apply grid min-w-0 overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm shadow-zinc-950/[0.035] dark:border-zinc-800 dark:bg-zinc-950 lg:grid-cols-[15rem_minmax(0,1fr)];
+    }
+
+    .ui-settings-sidebar {
+        @apply border-b border-zinc-200 bg-zinc-50/80 p-4 dark:border-zinc-800 dark:bg-zinc-900/55 lg:min-h-[30rem] lg:border-b-0 lg:border-r;
+    }
+
+    .ui-settings-nav {
+        @apply flex gap-2 overflow-x-auto lg:block lg:space-y-1;
+    }
+
+    .ui-settings-nav-link {
+        @apply block min-w-max rounded-lg border border-transparent px-3 py-2.5 text-sm font-medium text-zinc-600 transition hover:border-zinc-200 hover:bg-white hover:text-zinc-950 dark:text-zinc-300 dark:hover:border-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-white lg:min-w-0;
+    }
+
+    .ui-settings-nav-link-active {
+        @apply border-blue-200 bg-blue-50 font-semibold text-blue-950 dark:border-blue-900/80 dark:bg-blue-950/45 dark:text-blue-100;
+    }
+
+    .ui-settings-workspace {
+        @apply min-w-0 p-5 sm:p-6 lg:p-7;
+    }
+}
+
+[data-flux-field]:not(ui-radio, ui-checkbox) {
+    @apply grid gap-2;
+}
+
+[data-flux-label] {
+    @apply !mb-0 !leading-tight;
+}
+
+input:focus[data-flux-control], textarea:focus[data-flux-control], select:focus[data-flux-control] {
+    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+}

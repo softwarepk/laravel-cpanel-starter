@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+APP_DIR="${APP_DIR:-$HOME/apps/example-app}"
+BRANCH="${BRANCH:-main}"
+
+cd "$APP_DIR"
+
+git fetch origin "$BRANCH"
+git checkout "$BRANCH"
+git pull --ff-only origin "$BRANCH"
+
+composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader
+
+if command -v npm >/dev/null 2>&1; then
+    npm ci
+    npm run build
+fi
+
+php artisan down --retry=30 || true
+php artisan migrate --force
+php artisan optimize
+php artisan up
+
+echo "Deployment completed."
