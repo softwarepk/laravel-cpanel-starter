@@ -59,4 +59,6 @@ composer ci:check
 - `DEPLOYMENT.md` — cPanel deployment model
 - `/patterns` — living rendered UI reference after login
 
-A product created from this starter should commit `composer.lock` and `package-lock.json` after its dependency set is established so deployments are reproducible.
+## Reproducible dependencies
+
+This extraction branch intentionally began without lockfiles while the reusable dependency set was being corrected. Before the foundation is merged/tagged for reuse, generate and commit both `composer.lock` and `package-lock.json` from a clean successful local install. Once committed, normal projects should use `composer install` and `npm ci` against those known dependency versions rather than silently drifting to newer transitive packages.
