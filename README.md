@@ -61,4 +61,4 @@ composer ci:check
 
 ## Reproducible dependencies
 
-This extraction branch intentionally began without lockfiles while the reusable dependency set was being corrected. Before the foundation is merged/tagged for reuse, generate and commit both `composer.lock` and `package-lock.json` from a clean successful local install. Once committed, normal projects should use `composer install` and `npm ci` against those known dependency versions rather than silently drifting to newer transitive packages.
+`composer.lock` and `package-lock.json` are committed as part of the validated starter baseline. Use `composer install` and `npm ci` for normal installs and deployments so projects use the known dependency versions rather than silently drifting to newer transitive packages.
