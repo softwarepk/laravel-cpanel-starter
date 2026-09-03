@@ -1,23 +1,18 @@
 <?php
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
-uses(RefreshDatabase::class);
-
-it('redirects guests to login', function () {
+test('redirects guests to login', function () {
     $this->get('/')->assertRedirect(route('login'));
 });
 
-it('renders the login page', function () {
+test('renders the login page', function () {
     $this->get('/login')
         ->assertOk()
         ->assertSee('Log in to your account');
 });
 
-it('shows the dashboard to a verified user', function () {
-    $this->withoutExceptionHandling();
-
+test('shows the dashboard to a verified user', function () {
     $user = User::factory()->create();
 
     $this->actingAs($user)
@@ -26,13 +21,20 @@ it('shows the dashboard to a verified user', function () {
         ->assertSee('Starter Dashboard');
 });
 
-it('shows the pattern gallery to a verified user', function () {
-    $this->withoutExceptionHandling();
-
+test('shows the pattern gallery to a verified user', function () {
     $user = User::factory()->create();
 
     $this->actingAs($user)
         ->get('/patterns')
         ->assertOk()
         ->assertSee('UI Pattern Gallery');
+});
+
+test('shows account settings to an authenticated user', function () {
+    $user = User::factory()->create();
+
+    $this->actingAs($user)
+        ->get('/settings/profile')
+        ->assertOk()
+        ->assertSee('Profile');
 });
