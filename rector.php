@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
+use Rector\TypeDeclaration\Rector\StmtsAwareInterface\SafeDeclareStrictTypesRector;
 
 return RectorConfig::configure()
     ->withPaths([
@@ -12,6 +13,9 @@ return RectorConfig::configure()
         __DIR__.'/database',
         __DIR__.'/routes',
         __DIR__.'/tests',
+    ])
+    ->withSkip([
+        SafeDeclareStrictTypesRector::class,
     ])
     ->withPreparedSets(
         deadCode: true,
