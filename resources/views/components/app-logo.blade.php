@@ -1,20 +1,23 @@
-@props(['sidebar' => false, 'href' => null])
+@props(['sidebar' => false])
 
 @php
-    $productName = config('app.name', 'Starter');
+    $configuredName = trim((string) config('app.name'));
+    $productName = $configuredName === '' || strcasecmp($configuredName, 'Laravel') === 0
+        ? __('Laravel cPanel Starter')
+        : $configuredName;
     $mark = mb_strtoupper(mb_substr($productName, 0, 1));
-    $href ??= auth()->check() ? route('dashboard') : route('home');
 @endphp
 
 @if ($sidebar)
-    <flux:sidebar.brand :name="$productName" :href="$href" wire:navigate>
+    <flux:sidebar.brand :name="$productName" {{ $attributes }}>
         <x-slot name="logo" class="flex aspect-square size-9 items-center justify-center rounded-lg bg-zinc-900 text-sm font-semibold text-white dark:bg-white dark:text-zinc-950">
             {{ $mark }}
         </x-slot>
     </flux:sidebar.brand>
 @else
-    <a href="{{ $href }}" class="inline-flex items-center gap-2 font-semibold text-zinc-950 dark:text-white">
-        <span class="flex size-9 items-center justify-center rounded-lg bg-zinc-900 text-sm font-semibold text-white dark:bg-white dark:text-zinc-950">{{ $mark }}</span>
-        <span>{{ $productName }}</span>
-    </a>
+    <flux:brand :name="$productName" {{ $attributes }}>
+        <x-slot name="logo" class="flex aspect-square size-9 items-center justify-center rounded-lg bg-zinc-900 text-sm font-semibold text-white dark:bg-white dark:text-zinc-950">
+            {{ $mark }}
+        </x-slot>
+    </flux:brand>
 @endif
