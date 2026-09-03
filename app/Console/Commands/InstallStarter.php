@@ -104,6 +104,12 @@ class InstallStarter extends Command
 
     private function quoteEnvironmentValue(string $value): string
     {
-        return '"'.str_replace(['\\', '"'], ['\\\\', '\\"'], $value).'"';
+        $encoded = json_encode($value, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+
+        if ($encoded === false) {
+            throw new \RuntimeException('Unable to encode the application name for .env.');
+        }
+
+        return $encoded;
     }
 }
