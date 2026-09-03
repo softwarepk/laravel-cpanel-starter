@@ -14,7 +14,7 @@ The starter is intentionally focused: small-to-medium database-backed applicatio
 - Reusable `x-ui.*` presentation primitives and interaction grammar
 - GitHub Primer + Atlassian + Linear UI influences
 - Heroicons plus committed Lucide Flux icons where needed
-- Pest, Pint, Larastan, Laravel Boost, and agent/Cursor guidance
+- Pest, Pint, Larastan, Laravel Boost, Rector, and agent/Cursor guidance
 - SQLite zero-setup local development; MySQL/MariaDB cPanel production
 - file cache/session and synchronous jobs by default; persistent infrastructure is opt-in
 - Git/PR/review/deployment guardrails
@@ -29,7 +29,25 @@ composer setup
 php artisan serve
 ```
 
-`composer setup` creates the local SQLite database automatically, generates the application key, runs migrations/seeders, installs frontend dependencies, and builds production assets. No local MySQL database/user/password setup is required.
+`composer setup` creates the local SQLite database, generates the application key, launches the starter initializer, runs migrations/seeders, installs frontend dependencies from the lockfile, and builds production assets. No local MySQL database/user/password setup is required.
+
+During setup you can choose:
+
+- the application name;
+- whether public user registration is enabled;
+- whether authenticated application pages require email verification.
+
+You can rerun those choices at any time:
+
+```bash
+php artisan starter:install
+```
+
+For scripted/non-interactive setup, pass explicit values:
+
+```bash
+php artisan starter:install --name="Asset Tracker" --registration=no --verification=yes
+```
 
 The local seeder creates:
 
@@ -38,17 +56,27 @@ starter@example.com
 password
 ```
 
-For active frontend development, use:
+For active frontend development:
 
 ```bash
 composer dev
 ```
+
+To automatically apply the starter's safe code-quality fixes:
+
+```bash
+composer fix
+```
+
+`composer fix` runs Rector's conservative modernization/refactoring rules, Pint formatting, and Larastan analysis.
 
 Before considering a change complete:
 
 ```bash
 composer ci:check
 ```
+
+The quality gate checks Pint, Larastan, Rector dry-run, and Pest tests.
 
 ## Read next
 

@@ -16,7 +16,7 @@ This repository is a reusable foundation for conventional Laravel applications d
 - Flux UI 2 + Livewire Blaze
 - Tailwind CSS 4 + Vite 8
 - Laravel Fortify authentication
-- Pest 5, Pint, Larastan, Laravel Boost
+- Pest 5, Pint, Larastan, Rector, Laravel Boost
 - SQLite for zero-setup local development; MySQL/MariaDB for cPanel production
 - File cache/session and synchronous queues by default; persistent infrastructure is opt-in
 
@@ -38,9 +38,13 @@ Flux uses Heroicons by default. Use exact icon names—never invent them. For Lu
 - Do not create an internal API solely for this application's own Livewire frontend.
 - Do not add Redis, Horizon, external auth platforms, or other infrastructure without a concrete requirement.
 
+## Starter initialization
+
+Use `php artisan starter:install` to configure the application name and basic Fortify choices. Preserve the environment-driven registration and email-verification switches rather than hard-coding project-specific auth behavior into routes or views.
+
 ## Verification
 
-Every meaningful change must be programmatically verified. Run focused tests first, then `composer ci:check` before considering work complete. Fix Pint, Larastan, Pest, build, or test failures rather than bypassing them.
+Every meaningful change must be programmatically verified. Run focused tests first, use `composer fix` for safe automated Rector/Pint cleanup when appropriate, then run `composer ci:check` before considering work complete. Fix Pint, Larastan, Rector, Pest, build, or test failures rather than bypassing them.
 
 For frontend changes, also review the rendered screen. Passing tests are necessary but do not substitute for visual acceptance.
 
