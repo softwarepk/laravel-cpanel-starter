@@ -104,6 +104,6 @@ class InstallStarter extends Command
 
     private function quoteEnvironmentValue(string $value): string
     {
-        return '"'.addcslashes($value, "\\\"").'"';
+        return '"'.str_replace(['\\', '"'], ['\\\\', '\\"'], $value).'"';
     }
 }
