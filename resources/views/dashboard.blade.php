@@ -1,4 +1,4 @@
-<x-layouts.app :title="__('Dashboard')">
+<x-layouts::app :title="__('Dashboard')">
     <main class="ui-page">
         <header class="ui-page-header">
             <div>
@@ -39,4 +39,4 @@
             </div>
         </section>
     </main>
-</x-layouts.app>
+</x-layouts::app>
