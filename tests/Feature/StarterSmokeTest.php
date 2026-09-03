@@ -9,6 +9,12 @@ it('redirects guests to login', function () {
     $this->get('/')->assertRedirect(route('login'));
 });
 
+it('renders the login page', function () {
+    $this->get('/login')
+        ->assertOk()
+        ->assertSee('Log in to your account');
+});
+
 it('shows the dashboard to a verified user', function () {
     $user = User::factory()->create();
 
