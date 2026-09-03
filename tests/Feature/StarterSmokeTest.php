@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use Illuminate\Support\Facades\Artisan;
 
 test('redirects guests to login', function () {
     $this->get('/')->assertRedirect(route('login'));
@@ -37,4 +38,8 @@ test('shows account settings to an authenticated user', function () {
         ->get('/settings/profile')
         ->assertOk()
         ->assertSee('Profile');
+});
+
+test('registers the starter initializer command', function () {
+    expect(Artisan::all())->toHaveKey('starter:install');
 });
