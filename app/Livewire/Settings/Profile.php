@@ -8,7 +8,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-#[Layout('layouts.app')]
+#[Layout('components.layouts.app')]
 #[Title('Profile settings')]
 class Profile extends Component
 {
