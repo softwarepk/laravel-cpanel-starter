@@ -35,7 +35,5 @@ class FortifyServiceProvider extends ServiceProvider
 
             return Limit::perMinute(5)->by($key);
         });
-
-        RateLimiter::for('two-factor', fn (Request $request) => Limit::perMinute(5)->by((string) $request->session()->get('login.id')));
     }
 }

@@ -12,10 +12,17 @@ git pull --ff-only origin "$BRANCH"
 
 composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader
 
-if command -v npm >/dev/null 2>&1; then
-    npm ci
-    npm run build
+if ! command -v npm >/dev/null 2>&1; then
+    echo "Node/npm is required by this deployment example to build frontend assets." >&2
+    exit 1
 fi
+
+if [[ -f package-lock.json ]]; then
+    npm ci
+else
+    npm install --no-audit --no-fund
+fi
+npm run build
 
 php artisan down --retry=30 || true
 php artisan migrate --force

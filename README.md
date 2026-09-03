@@ -28,12 +28,16 @@ This starter is intentionally narrow: it is for small-to-medium database-backed 
 cp .env.example .env
 composer install
 php artisan key:generate
-php artisan migrate
+php artisan migrate --seed
 npm install
 npm run build
 php artisan serve
 ```
 
+The local seeder creates `starter@example.com` with password `password` so the shell can be reviewed immediately. Registration is also enabled by default and can be disabled with `FORTIFY_REGISTRATION=false`.
+
 For local development, `composer dev` runs the application and Vite together.
+
+A new product repository should normally commit the `composer.lock` and `package-lock.json` generated during its first setup so subsequent deployments are repeatable.
 
 See `FOUNDATION.md`, `UI-GUIDE.md`, `AGENTS.md`, and `DEPLOYMENT.md` for the small amount of guidance that travels with the starter.

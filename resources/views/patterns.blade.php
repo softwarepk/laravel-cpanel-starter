@@ -12,12 +12,7 @@
         </header>
 
         <section class="ui-section">
-            <div class="ui-section-header">
-                <div>
-                    <h2 class="ui-section-title">Summary surface</h2>
-                    <p class="ui-section-description">A compact way to show a few important values without turning the page into a dashboard of cards.</p>
-                </div>
-            </div>
+            <div class="ui-section-header"><div><h2 class="ui-section-title">Summary surface</h2><p class="ui-section-description">A compact way to show a few important values without turning the page into a dashboard of cards.</p></div></div>
             <div class="ui-summary-surface">
                 <div class="ui-summary-stat"><div class="ui-summary-label">Open</div><div class="ui-summary-value">24</div></div>
                 <div class="ui-summary-stat"><div class="ui-summary-label">In progress</div><div class="ui-summary-value">8</div></div>
@@ -26,16 +21,18 @@
         </section>
 
         <section class="ui-section">
-            <div class="ui-section-header">
-                <div>
-                    <h2 class="ui-section-title">Filters and list table</h2>
-                    <p class="ui-section-description">Keep filters close to the data and make the primary action obvious.</p>
-                </div>
-            </div>
+            <div class="ui-section-header"><div><h2 class="ui-section-title">Filters and list table</h2><p class="ui-section-description">Keep filters close to the data and make the primary action obvious.</p></div></div>
             <div class="ui-filter-bar grid gap-3 md:grid-cols-[minmax(0,1fr)_13rem_13rem_auto]">
                 <flux:input label="Search" placeholder="Search records…" />
-                <flux:select label="Status"><option>Active</option><option>All</option></flux:select>
-                <flux:select label="Page size"><option>20</option><option>50</option><option>100</option></flux:select>
+                <flux:select label="Status">
+                    <flux:select.option>Active</flux:select.option>
+                    <flux:select.option>All</flux:select.option>
+                </flux:select>
+                <flux:select label="Page size">
+                    <flux:select.option>20</flux:select.option>
+                    <flux:select.option>50</flux:select.option>
+                    <flux:select.option>100</flux:select.option>
+                </flux:select>
                 <div class="flex items-end"><flux:button class="w-full">Clear</flux:button></div>
             </div>
             <div class="ui-table-shell">
@@ -58,10 +55,7 @@
                     <flux:input type="email" label="Email" placeholder="name@example.com" />
                     <div class="md:col-span-2"><flux:textarea label="Notes" rows="3" placeholder="Optional notes" /></div>
                 </div>
-                <div class="ui-form-actions">
-                    <div><flux:button variant="ghost">Cancel</flux:button></div>
-                    <div class="ui-form-actions-primary"><flux:button variant="primary">Save changes</flux:button></div>
-                </div>
+                <div class="ui-form-actions"><div><flux:button variant="ghost">Cancel</flux:button></div><div class="ui-form-actions-primary"><flux:button variant="primary">Save changes</flux:button></div></div>
             </div>
         </section>
 

@@ -5,11 +5,7 @@ use Laravel\Fortify\Features;
 $features = [
     env('FORTIFY_REGISTRATION', true) ? Features::registration() : null,
     Features::resetPasswords(),
-    env('FORTIFY_EMAIL_VERIFICATION', true) ? Features::emailVerification() : null,
-    env('FORTIFY_TWO_FACTOR', false) ? Features::twoFactorAuthentication([
-        'confirm' => true,
-        'confirmPassword' => true,
-    ]) : null,
+    Features::emailVerification(),
 ];
 
 return [
